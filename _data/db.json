@@ -1,0 +1,11 @@
+{
+  "rsvps": [
+    {
+      "id": "3bb2",
+      "name": "test",
+      "message": "asdfadsf",
+      "isAttending": true,
+      "date": "2024-11-26T04:04:25.502Z"
+    }
+  ]
+}
