@@ -29,7 +29,7 @@ export default function ThankYou() {
         {/* Scripture */}
         <div className="text-center mb-8">
           <p className="text-lg italic text-pink-500">
-            "Let all that you do be done in love." — 1 Corinthians 16:14
+            &quot;Let all that you do be done in love.&quot; — 1 Corinthians 16:14
           </p>
         </div>
       </header>
