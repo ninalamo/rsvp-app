@@ -36,7 +36,15 @@ export default function ThankYou() {
           }}
         >
           We are thrilled to have you celebrate with us on our special day!<br/> See you.
+
         </small>
+
+
+        <div className="text-center mb-2">
+              <p className="text-sm italic text-gray-600">
+                &quot;Let all that you do be done in love.&quot; — 1 Corinthians 16:14
+              </p>
+            </div>
       </header>
     </div>
   );
