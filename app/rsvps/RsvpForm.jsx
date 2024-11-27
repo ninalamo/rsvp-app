@@ -145,7 +145,7 @@ export default function RsvpForm() {
                       value={form.name}
                       onChange={handleChange}
                       required
-                      placeholder="John Doe; Jane Doe"
+                      placeholder="Jm Condino; Nin Alamo"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-pink-300"
                     />
                   </td>
