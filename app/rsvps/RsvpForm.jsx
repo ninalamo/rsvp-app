@@ -3,7 +3,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function RsvpForm() {
-  const [form, setForm] = useState({ name: "", message: "", isAttending: false });
+  const [form, setForm] = useState({ name: "", email: "", message: "", isAttending: false });
   const [guestType, setGuestType] = useState(""); // This will hold the type of guest (VIP/Peer)
   const searchParams = useSearchParams(); // Access the search parameters from the URL
   const router = useRouter(); // Get router instance
@@ -38,6 +38,7 @@ export default function RsvpForm() {
         .insert([
           {
             name: form.name,
+            email: form.email,
             message: form.message,
             isAttending: form.isAttending,
             date: new Date().toISOString(),
@@ -63,10 +64,10 @@ export default function RsvpForm() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-pink-100"
-    style={{
-      fontFamily: "'Merriweather', serif",
-      color: "black",
-    }}
+      style={{
+        fontFamily: "'Merriweather', serif",
+        color: "black",
+      }}
     >
       <div className="bg-white shadow-lg rounded-lg w-full max-w-3xl">
         <div
@@ -78,7 +79,14 @@ export default function RsvpForm() {
             borderRadius: "8px",
           }}
         >
-          <div className="text-center">
+          {/* RSVP Form */}
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col items-center justify-center space-y-8 w-full max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg"
+            style={{
+              fontFamily: "'Merriweather', serif",
+            }}
+          >
             <h5
               className="text-4xl font-bold text-brown-500"
               style={{
@@ -88,116 +96,85 @@ export default function RsvpForm() {
             >
               We are getting married! - Jmnin
             </h5>
-            {/* Scripture */}
-            <p
-              className="mt-4 text-sm text-gray-700"
-              style={{
-                fontFamily: "'Merriweather', serif",
-                color: "black",
-              }}
-            >
-              <span className="font-semibold">
-                We&apos;re excited to share this joyous occasion and blessing with you!
-              </span>
-              <br />
-
-              <span className="font-semibold">Location:</span>&nbsp;
-              <a
-                href="https://www.google.com/maps?q=Parish+of+The+Holy+Family,+Imus"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                Parish of The Holy Family, Imus
-              </a>
-              <br />
-              <span className="font-semibold">Date & Time:</span> January 4, 2025, 10:00 AM
-              <br />
-              <span className="font-semibold">Dine with us at:</span>&nbsp;
-              <a
-                href="https://www.contis.ph/tools/locations/locations/conti-s-bakeshop-restaurant-with-drive-thru-kawit-cavite"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                Conti&apos;s - Kawit, Cavite
-              </a>
+            <p className="text-sm text-gray-500 text-center">
+              We&apos;re excited to share this joyous occasion and blessing with you!
+              Please let us know if you can attend and leave us a message!
             </p>
-          </div>
 
-          {/* RSVP Form */}
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-6"
-            style={{
-              fontFamily: "'Merriweather', serif",
-              color: "black",
-            }}
-          >
-            <table className="w-full text-gray-700">
-              <tbody>
-                <tr>
-                  <td className="p-4 text-right font-medium">Name:</td>
-                  <td className="p-4">
-                    <input
-                      type="text"
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      required
-                      placeholder="Jm Condino; Nin Alamo"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-pink-300"
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 text-right font-medium">Message:</td>
-                  <td className="p-4">
-                    <textarea
-                      name="message"
-                      value={form.message}
-                      onChange={handleChange}
-                      rows="4"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-pink-300"
-                    ></textarea>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 text-right font-medium">Will you attend?</td>
-                  <td className="p-4">
-                    <label className="flex items-center space-x-3">
-                      <input
-                        type="checkbox"
-                        name="isAttending"
-                        checked={form.isAttending}
-                        onChange={handleChange}
-                        className="h-5 w-5 text-pink-600 focus:ring-pink-300 rounded"
-                      />
-                      <span className="text-gray-700">Yes, I will attend!</span>
-                    </label>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div className="space-y-6 w-full">
+              {/* Name Field */}
+              <div className="flex flex-col w-full">
+                <label htmlFor="name" className="text-gray-700 font-medium">
+                  Your Name
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                  placeholder="Enter your name"
+                  className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition duration-200"
+                />
+              </div>
 
-            <div className="text-center">
-              {/* Conditional Messages based on Guest Type */}
-              {guestType === "VIP" && (
-                <small className="text-green-600 font-medium">
-                  &quot;We&apos;re so excited to celebrate with you, and we&apos;d love for you to bring your plus
-                  one to join in the fun! <br /> We can&apos;t wait to share this special day with you!&quot; <br /> JmNin
-                </small>
-              )}
+              {/* Email Field */}
+              <div className="flex flex-col w-full">
+                <label htmlFor="email" className="text-gray-700 font-medium">
+                  Your Email
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="Enter your email"
+                  className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition duration-200"
+                />
+              </div>
 
-              {guestType === "Peer" && (
-                <small className="text-red-600 font-medium">
-                  &quot;We wish we could invite everyone, but due to space, our guest list is small.<br /> We&apos;re truly honored to have you join us on our special day&quot; <br />JmNin
-                </small>
-              )}
+              {/* Message Field */}
+              <div className="flex flex-col w-full">
+                <label htmlFor="message" className="text-gray-700 font-medium">
+                  Leave a Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  rows="4"
+                  placeholder="Write your message here"
+                  className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition duration-200"
+                ></textarea>
+              </div>
+
+              {/* Checkbox Field */}
+              <div className="flex flex-col w-full">
+                <label htmlFor="isAttending" className="text-gray-700 font-medium">
+                  Will you attend?
+                </label>
+                <label className="flex items-center mt-2 space-x-3">
+                  <input
+                    id="isAttending"
+                    type="checkbox"
+                    name="isAttending"
+                    checked={form.isAttending}
+                    onChange={handleChange}
+                    className="h-5 w-5 text-pink-500 border-gray-300 rounded focus:ring-2 focus:ring-pink-400 transition duration-200"
+                  />
+                  <span className="text-gray-700">Yes, I will attend!</span>
+                </label>
+              </div>
             </div>
+
+            {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-pink-700 transition duration-200"
+              className="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:from-pink-600 hover:to-pink-700 transition duration-200 transform hover:scale-105"
             >
               Submit RSVP
             </button>
