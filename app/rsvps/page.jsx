@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { API_URL } from "../../config/config";
 
 export default function RSVPListPage() {
   const [rsvps, setRsvps] = useState([]);

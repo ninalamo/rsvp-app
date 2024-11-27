@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { API_URL } from "../config/config";
 import { supabase } from "@/lib/supabase";
 
 export default function HomePage() {
