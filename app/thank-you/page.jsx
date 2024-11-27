@@ -2,49 +2,36 @@ import React from "react";
 
 export default function ThankYou() {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center py-10 relative">
-      {/* Background Image with Blur Effect */}
-      <div
-        className="absolute top-0 left-0 right-0 bottom-0"
-        style={{
-          backgroundImage: "url('/images/rsvp.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          filter: "blur(8px)",
-          zIndex: "-1", // Ensures the background is behind the content
-        }}
-      ></div>
-
+    <div className="min-h-screen bg-pink-100 flex flex-col items-center justify-center py-10 px-6">
       {/* Content Section */}
-      <header className="text-center mb-8">
+      <header className="text-center mb-12">
         <h1
-          className="text-4xl font-bold"
+          className="text-5xl font-bold text-pink-700 mb-4"
           style={{
             fontFamily: "'Great Vibes', cursive",
-            color: "#333",
           }}
         >
           Thank You!!!
         </h1>
-        <small
-          className="text-lg"
+        <p
+          className="text-lg text-pink-600 mb-6"
           style={{
             fontFamily: "'Merriweather', serif",
             fontSize: "1.2rem",
-            color: "#555",
+            fontWeight: "400",
           }}
         >
-          We are thrilled to have you celebrate with us on our special day!<br/> See you.
+          We are thrilled to have you celebrate with us on our special day!
+          <br />
+          See you soon.
+        </p>
 
-        </small>
-
-
-        <div className="text-center mb-2">
-              <p className="text-sm italic text-gray-600">
-                &quot;Let all that you do be done in love.&quot; — 1 Corinthians 16:14
-              </p>
-            </div>
+        {/* Scripture */}
+        <div className="text-center mb-8">
+          <p className="text-lg italic text-pink-500">
+            "Let all that you do be done in love." — 1 Corinthians 16:14
+          </p>
+        </div>
       </header>
     </div>
   );
