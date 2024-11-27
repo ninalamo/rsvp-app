@@ -179,26 +179,23 @@ export default function HomePage() {
                 </tbody>
               </table>
 
-              <small
+              <div
                 className='text-center'
-                style={{
-                  fontFamily: "'Roboto'",
-                }}
               >
                 {/* Conditional Messages based on Guest Type */}
                 {guestType === "VIP" && (
-                  <p className="text-green-600 font-medium">
-                    We&apos;re so excited to celebrate with you, and we&apos;d love for you to bring a plus
-                    one to join in the fun! We can&apos;t wait to share this special day with you! <br/> JmNin
-                  </p>
+                  <small className="text-green-600 font-medium">
+                    &quot;We&apos;re so excited to celebrate with you, and we&apos;d love for you to bring your plus
+                    one to join in the fun! <br/> We can&apos;t wait to share this special day with you!&quot; <br/> JmNin
+                  </small>
                 )}
 
                 {guestType === "Peer" && (
-                  <p className="text-yellow-600 font-medium">
-                    &quot;We wish we could invite everyone, but due to space, our guest list is small. We&apos;re truly honored to have you join us on our special day&quot; <br/>JmNin
-                  </p>
+                  <small className="text-red-600 font-medium">
+                    &quot;We wish we could invite everyone, but due to space, our guest list is small.<br/> We&apos;re truly honored to have you join us on our special day&quot; <br/>JmNin
+                  </small>
                 )}
-              </small>
+              </div>
               <button
                 type="submit"
                 className="w-full bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-pink-700 transition duration-200"
