@@ -10,7 +10,4 @@ export default function HomePage() {
       <RsvpForm />
     </Suspense>
   );
-
-
-
 }

@@ -1,11 +1,12 @@
 import { supabase } from "@/lib/supabase";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function RsvpForm() {
   const [form, setForm] = useState({ name: "", message: "", isAttending: false });
   const [guestType, setGuestType] = useState(""); // This will hold the type of guest (VIP/Peer)
   const searchParams = useSearchParams(); // Access the search parameters from the URL
+  const router = useRouter(); // Get router instance
   const [imageUrl, setImageUrl] = useState(""); // URL for RSVP image
 
   // Check query parameter when the page loads
@@ -51,14 +52,22 @@ export default function RsvpForm() {
       console.log("Supabase Inserted Data:", data);
 
       // Navigate to the Thank You page
-      router.push("/thank-you");
+      if (typeof window !== "undefined") {
+        // Ensure the router runs only in the client-side environment
+        router.push("/thank-you");
+      }
     } catch (error) {
       console.error("Error submitting RSVP:", error);
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-pink-100">
+    <div className="flex items-center justify-center min-h-screen bg-pink-100"
+    style={{
+      fontFamily: "'Merriweather', serif",
+      color: "black",
+    }}
+    >
       <div className="bg-white shadow-lg rounded-lg w-full max-w-3xl">
         <div
           className="bg-cover bg-center p-8"
@@ -74,15 +83,22 @@ export default function RsvpForm() {
               className="text-4xl font-bold text-brown-500"
               style={{
                 fontFamily: "'Great Vibes', cursive",
-                color: 'brown'
+                color: "brown",
               }}
             >
               We are getting married! - Jmnin
             </h5>
-             {/* Scripture */}
-
-            <p className="mt-4 text-sm text-gray-700">
-              <span className="font-semibold">We&apos;re excited to share this joyous occasion and blessing with you!</span>
+            {/* Scripture */}
+            <p
+              className="mt-4 text-sm text-gray-700"
+              style={{
+                fontFamily: "'Merriweather', serif",
+                color: "black",
+              }}
+            >
+              <span className="font-semibold">
+                We&apos;re excited to share this joyous occasion and blessing with you!
+              </span>
               <br />
 
               <span className="font-semibold">Location:</span>&nbsp;
@@ -96,8 +112,7 @@ export default function RsvpForm() {
               </a>
               <br />
               <span className="font-semibold">Date & Time:</span> January 4, 2025, 10:00 AM
-            </p>
-            <p className="text-sm text-gray-700">
+              <br />
               <span className="font-semibold">Dine with us at:</span>&nbsp;
               <a
                 href="https://www.contis.ph/tools/locations/locations/conti-s-bakeshop-restaurant-with-drive-thru-kawit-cavite"
@@ -110,9 +125,15 @@ export default function RsvpForm() {
             </p>
           </div>
 
-
           {/* RSVP Form */}
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6"
+            style={{
+              fontFamily: "'Merriweather', serif",
+              color: "black",
+            }}
+          >
             <table className="w-full text-gray-700">
               <tbody>
                 <tr>
