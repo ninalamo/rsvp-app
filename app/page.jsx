@@ -182,7 +182,7 @@ export default function HomePage() {
               <small
                 className='text-center'
                 style={{
-                  fontFamily: "'Merriweather'",
+                  fontFamily: "'Roboto'",
                 }}
               >
                 {/* Conditional Messages based on Guest Type */}
