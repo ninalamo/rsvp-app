@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { API_URL } from "../config/config";
+import { supabase } from "@/lib/supabase";
 
 export default function HomePage() {
   const [form, setForm] = useState({ name: "", message: "", isAttending: false });
@@ -18,22 +19,35 @@ export default function HomePage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      await fetch(`${API_URL}/rsvps`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...form,
-          date: new Date().toISOString(),
-        }),
-      });
+      // Insert data into the Supabase table
+      const { data, error } = await supabase
+        .from("rsvp")
+        .insert([
+          {
+            name: form.name,
+            message: form.message,
+            isAttending: form.isAttending,
+
+            date: new Date().toISOString(),
+          },
+        ]);
+
+      if (error) {
+        console.error("Error inserting into Supabase:", error);
+        return;
+      }
+
+      console.log("Supabase Inserted Data:", data);
+
+      // Navigate to the Thank You page
       router.push("/thank-you");
     } catch (error) {
       console.error("Error submitting RSVP:", error);
     }
   };
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-pink-100">

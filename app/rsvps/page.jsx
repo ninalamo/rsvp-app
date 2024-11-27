@@ -1,23 +1,50 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
 import { API_URL } from "../../config/config";
 
 export default function RSVPListPage() {
   const [rsvps, setRsvps] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchRSVPs = async () => {
       try {
-        const response = await fetch(`${API_URL}/rsvps`);
-        const data = await response.json();
+        const { data, error } = await supabase.from('rsvp').select('*');
+        if (error) {
+          console.error('Error fetching rsvps:', error);
+          return;
+        }
+        console.log('Rsvps:', data);
         setRsvps(data);
-      } catch (error) {
-        console.error("Error fetching RSVPs:", error);
+      } catch (err) {
+        console.error("Error fetching RSVPs:", err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
+
     fetchRSVPs();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <p>Loading RSVPs...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <p className="text-red-500">Failed to load RSVPs: {error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center p-6 bg-gray-50 min-h-screen">
