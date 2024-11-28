@@ -28,6 +28,7 @@ export default function ThankYou() {
   }
 
   return (
+
     <div className="min-h-screen bg-pink-100 flex flex-col items-center justify-center py-10 px-6">
       {/* Content Section */}
       <header className="text-center mb-12" id="thank-you-content">
