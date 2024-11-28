@@ -1,10 +1,7 @@
-import mailjet from 'node-mailjet';
+import sendgrid from "@sendgrid/mail";
 
-// Initialize Mailjet with your API key and secret
-const mailjetClient = mailjet.connect(
-  process.env.MAILJET_API_KEY,
-  process.env.MAILJET_API_SECRET
-);
+// Initialize SendGrid with your API key
+sendgrid.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_API_KEY);
 
 export async function POST(req) {
   try {
@@ -20,27 +17,15 @@ export async function POST(req) {
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Message:</strong> ${message}</p>
       <p><strong>Attendance:</strong> ${isAttending ? "Yes" : "No"}</p>
+
     `;
 
-    const request = mailjetClient.post('send').request({
-      Messages: [
-        {
-          From: {
-            Email: process.env.NEXT_PUBLIC_EMAIL_FROM,  // replace with your Mailjet verified sender email
-            Name: 'RSVP App',
-          },
-          To: [
-            {
-              Email: email,
-            },
-          ],
-          Subject: subject,
-          HTMLPart: content,
-        },
-      ],
+    await sendgrid.send({
+      to: email,
+      from: process.env.NEXT_PUBLIC_EMAIL_FROM,  // replace with your SendGrid verified sender email
+      subject: subject,
+      html: content,
     });
-
-    await request;
 
     return new Response(
       JSON.stringify({ message: "Email sent successfully!" }),
