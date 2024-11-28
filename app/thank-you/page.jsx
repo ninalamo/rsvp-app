@@ -1,11 +1,34 @@
-import React from "react";
+"use client"; // Ensure the code runs on the client side
+
+import React, { useState } from "react";
+import html2pdf from "html2pdf.js"; // Import html2pdf
 
 export default function ThankYou() {
+  const [isClient, setIsClient] = useState(false);
+
+  // Detect when the component is mounted on the client side
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Function to trigger PDF generation
+  const downloadPDF = () => {
+    const element = document.getElementById("thank-you-content");
+    html2pdf()
+      .from(element)
+      .save("thank_you_details.pdf");
+  };
+
+  // If the component is still rendering on the server, render a fallback message
+  if (!isClient) {
+    return null;
+  }
+
   return (
+
     <div className="min-h-screen bg-pink-100 flex flex-col items-center justify-center py-10 px-6">
       {/* Content Section */}
-      <header className="text-center mb-12">
-
+      <header className="text-center mb-12"  id="thank-you-content">
         <p
           className="text-lg text-pink-700 mb-6"
           style={{
@@ -16,10 +39,7 @@ export default function ThankYou() {
         >
           We are thrilled to have you celebrate with us on our special day!
           <br />
-
         </p>
-
-
 
         {/* Event Details */}
         <div
@@ -52,7 +72,6 @@ export default function ThankYou() {
             </a>
           </p>
 
-
           <p>
             <span className=" text-pink-800">Dine with us at:</span>&nbsp;
             <a
@@ -70,18 +89,15 @@ export default function ThankYou() {
             </a>
           </p>
         </div>
-        <hr>
-
-        </hr>
-        <br/>
+        <hr />
+        <br />
         {/* Scripture */}
         <div className="text-center mb-8">
           <p className="text-lg italic text-pink-600">
             &quot;Let all that you do be done in love.&quot; — 1 Corinthians 16:14
           </p>
         </div>
-      </header>
-      <h1
+        <h1
           className="text-5xl font-bold text-pink-700 mb-4"
           style={{
             fontFamily: "'Great Vibes', cursive",
@@ -89,6 +105,17 @@ export default function ThankYou() {
         >
           Thank You!!!
         </h1>
+      </header>
+
+
+
+      {/* Button to Download PDF */}
+      <button
+        onClick={downloadPDF}
+        className="bg-pink-600 text-white px-6 py-3 rounded-lg mt-6"
+      >
+        Save Event Details as PDF
+      </button>
     </div>
   );
 }
