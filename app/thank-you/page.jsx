@@ -1,7 +1,6 @@
 "use client"; // Ensure the code runs on the client side
 
 import React, { useState } from "react";
-import html2pdf from "html2pdf.js"; // Import html2pdf
 
 export default function ThankYou() {
   const [isClient, setIsClient] = useState(false);
@@ -11,13 +10,6 @@ export default function ThankYou() {
     setIsClient(true);
   }, []);
 
-  // Function to trigger PDF generation
-  const downloadPDF = () => {
-    const element = document.getElementById("thank-you-content");
-    html2pdf()
-      .from(element)
-      .save("thank_you_details.pdf");
-  };
 
   // If the component is still rendering on the server, render a fallback message
   if (!isClient) {
@@ -106,16 +98,6 @@ export default function ThankYou() {
           Thank You!!!
         </h1>
       </header>
-
-
-
-      {/* Button to Download PDF */}
-      <button
-        onClick={downloadPDF}
-        className="bg-pink-600 text-white px-6 py-3 rounded-lg mt-6"
-      >
-        Save Event Details as PDF
-      </button>
     </div>
   );
 }
