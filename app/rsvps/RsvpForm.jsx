@@ -119,22 +119,6 @@ export default function RsvpForm() {
                 />
               </div>
 
-              {/* Email Field */}
-              <div className="flex flex-col w-full">
-                <label htmlFor="email" className="text-gray-700 font-medium">
-                  Your Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  required
-                  placeholder="Enter your email"
-                  className="mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition duration-200"
-                />
-              </div>
 
               {/* Message Field */}
               <div className="flex flex-col w-full">
@@ -170,7 +154,21 @@ export default function RsvpForm() {
                 </label>
               </div>
             </div>
+            <div className="text-center">
+                {/* Conditional Messages based on Guest Type */}
+                {guestType === "VIP" && (
+                  <small className="text-green-600 font-medium">
+                    &quot;We&apos;re so excited to celebrate with you, and we&apos;d love for you to bring your plus
+                    one to join in the fun! We can&apos;t wait to share this special day with you!&quot; <br /> JmNin
+                  </small>
+                )}
 
+                {guestType === "Peer" && (
+                  <small className="text-red-600 font-medium">
+                    &quot;We wish we could invite everyone, but due to space, our guest list is small.<br /> We&apos;re truly honored to have you join us on our special day&quot; <br />JmNin
+                  </small>
+                )}
+              </div>
             {/* Submit Button */}
             <button
               type="submit"
