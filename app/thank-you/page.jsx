@@ -1,16 +1,13 @@
 "use client"; // Ensure the code runs on the client side
 
-import React, { useState, useEffect } from "react";
-
-// Dynamically import html2pdf.js only on the client-side
-import dynamic from "next/dynamic";
-const html2pdf = dynamic(() => import("html2pdf.js"), { ssr: false });
+import React, { useState } from "react";
+import html2pdf from "html2pdf.js"; // Import html2pdf
 
 export default function ThankYou() {
   const [isClient, setIsClient] = useState(false);
 
   // Detect when the component is mounted on the client side
-  useEffect(() => {
+  React.useEffect(() => {
     setIsClient(true);
   }, []);
 
@@ -31,7 +28,7 @@ export default function ThankYou() {
 
     <div className="min-h-screen bg-pink-100 flex flex-col items-center justify-center py-10 px-6">
       {/* Content Section */}
-      <header className="text-center mb-12" id="thank-you-content">
+      <header className="text-center mb-12"  id="thank-you-content">
         <p
           className="text-lg text-pink-700 mb-6"
           style={{
@@ -100,9 +97,7 @@ export default function ThankYou() {
             &quot;Let all that you do be done in love.&quot; — 1 Corinthians 16:14
           </p>
         </div>
-      </header>
-
-      <h1
+        <h1
           className="text-5xl font-bold text-pink-700 mb-4"
           style={{
             fontFamily: "'Great Vibes', cursive",
@@ -110,6 +105,9 @@ export default function ThankYou() {
         >
           Thank You!!!
         </h1>
+      </header>
+
+
 
       {/* Button to Download PDF */}
       <button
