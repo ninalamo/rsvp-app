@@ -170,7 +170,9 @@ export default function RsvpForm() {
                   <span className="block text-pink-600">
                   We&apos;d be happy to see you!
                   </span>
-
+                  <span className="block mt-2 text-gray-600 text-sm">
+                    <strong>Note:</strong> For everyone's comfort, we kindly ask that pets stay cozy at home. Please observe proper church etiquette. An official photographer will capture the moments—just bring your smiles!
+                  </span>
                 </p>
               </div>
 
