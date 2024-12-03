@@ -22,7 +22,7 @@ export default function RsvpForm() {
 
     // Check if RSVP date is expired
     const today = new Date();
-    const rsvpDeadline = new Date("2024-12-21");
+    const rsvpDeadline = new Date("2024-12-15");
     if (today > rsvpDeadline) {
       setIsExpired(true);
     }
