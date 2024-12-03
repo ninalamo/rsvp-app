@@ -128,7 +128,7 @@ export default function RsvpForm() {
                 We&apos;re excited to share this joyous occasion and blessing with you!
                 Please let us know if you can attend and leave us a message!
                 <hr className="m-2"></hr>
-                <strong>Please respond on or before December 21, 2024</strong>
+                <strong>Please respond on or before December 15, 2024</strong>
               </p>
 
               {/* Wedding Details Card */}
