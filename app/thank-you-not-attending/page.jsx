@@ -38,6 +38,20 @@ export default function ThankYouNotAttending() {
             </p>
           </div>
         </div>
+
+              {/* Support Us Button */}
+              <div className="text-center">
+                <a
+                  href="/support-us"
+                  className="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-600 text-white font-medium py-2 px-4 rounded-md shadow-md hover:shadow-lg hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-yellow-300"
+                  style={{
+                    fontSize: "1rem",
+                    marginBottom: "1rem",
+                  }}
+                >
+                  🌟 Support Us 🌟
+                </a>
+              </div>
       </div>
     </div>
   );

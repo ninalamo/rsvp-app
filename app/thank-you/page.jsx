@@ -74,6 +74,20 @@ export default function ThankYou() {
             We recommend elegant, modest attire. Light or pastel colors like white would be lovely!
           </p>
         </div>
+
+              {/* Support Us Button */}
+              <div className="text-center mt-12">
+                <a
+                  href="/support-us"
+                  className="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-600 text-white font-medium py-2 px-4 rounded-md shadow-md hover:shadow-lg hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-yellow-300"
+                  style={{
+                    fontSize: "1rem",
+                    marginBottom: "1rem",
+                  }}
+                >
+                  🌟 Support Us 🌟
+                </a>
+              </div>
       </header>
       <h3
           className="text-5xl font-bold text-pink-700 mb-4"
@@ -83,6 +97,8 @@ export default function ThankYou() {
         >
           &quot;Thanks and see you!&quot; — Jmnin
         </h3>
+
+
 
     </div>
   );

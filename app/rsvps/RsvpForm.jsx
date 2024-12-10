@@ -67,7 +67,7 @@ export default function RsvpForm() {
         if (typeof window !== "undefined") {
           // Ensure the router runs only in the client-side environment
           router.push("/thank-you-not-attending");
-        return;
+          return;
         }
       }
 
@@ -124,12 +124,26 @@ export default function RsvpForm() {
               >
                 We are getting married! - Jmnin
               </h5>
-              <p className="text-sm text-gray-500 text-center">
+              <div className="text-sm text-gray-500 text-center">
                 We&apos;re excited to share this joyous occasion and blessing with you!
                 Please let us know if you can attend and leave us a message!
                 <hr className="m-2"></hr>
                 <strong>Please respond on or before December 15, 2024</strong>
-              </p>
+              </div>
+
+              {/* Support Us Button */}
+              <div className="text-center">
+                <a
+                  href="/support-us"
+                  className="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-600 text-white font-medium py-2 px-4 rounded-md shadow-md hover:shadow-lg hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-yellow-300"
+                  style={{
+                    fontSize: "1rem",
+                    marginBottom: "1rem",
+                  }}
+                >
+                  🌟 Support Us 🌟
+                </a>
+              </div>
 
               {/* Wedding Details Card */}
               <div className="w-full p-4 bg-pink-100 border border-pink-300 rounded-lg shadow-md text-center">
@@ -168,7 +182,7 @@ export default function RsvpForm() {
                 </p>
                 <p className="mt-4 text-gray-700 text-center font-medium">
                   <span className="block text-pink-600">
-                  We&apos;d be happy to see you!
+                    We&apos;d be happy to see you!
                   </span>
                   <span className="block mt-2 text-gray-600 text-sm">
                     <strong>Note:</strong> For everyone&apos;s comfort, we kindly ask that pets stay cozy at home. Please observe proper church etiquette. An official photographer will capture the moments—just bring your smiles!
