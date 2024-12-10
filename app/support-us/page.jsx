@@ -69,12 +69,7 @@ export default function SupportUs() {
               }}
             />
             <p className="text-pink-800 font-bold text-sm">Nino Francisco Alamo</p>
-            <button
-              className="mt-4 bg-pink-700 text-white px-3 py-1 rounded-md shadow hover:bg-pink-800 transition"
-              onClick={() => window.open(imageUrl, "_blank")}
-            >
-              Download QR Code
-            </button>
+
           </div>
         </div>
 
